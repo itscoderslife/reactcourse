@@ -1,11 +1,14 @@
 import React from "react";
 import "./TodoListItem.css";
 
-const TodoListItem = ({ todo, onRemovePressed }) => (
+const TodoListItem = ({ todo, onRemovePressed, onCompletedPressed }) => (
     <div className="todo-item-container"> 
-        <h3>{todo.text}</h3>
+        {/* use strikethrough text for completed items and disabled Done button */}
+        <h3>{todo.text}</h3> 
         <div className="buttons-container">
-            <button className="completed-button">Done</button>
+            {todo.isCompleted ? null : <button
+                    onClick={() => onCompletedPressed(todo.text)}
+                    className="completed-button">Done</button>}
             <button
                 onClick={() => onRemovePressed(todo.text)}
                 className="remove-button">Remove</button>
